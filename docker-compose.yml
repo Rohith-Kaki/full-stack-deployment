@@ -1,0 +1,27 @@
+# this is used to run multiple containers at once, instead of running the react-client and express-server containers separately, 
+# we will use the docker-compose.yml file to both the containers together at once.
+
+version: '3.9'
+
+services:
+    client:
+        build: ./client
+        container_name: react-client
+        ports:
+            - "5174:3000"
+        networks:
+            - fullstack-net
+        depends_on:
+            - server
+        restart: unless-stopped
+    server:
+        build: ./server
+        container_name: express-server
+        ports:
+            - "4000:4000"
+        networks:
+            - fullstack-net
+        restart: unless-stopped
+networks:
+    fullstack-net:
+        driver: bridge
