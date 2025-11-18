@@ -5,7 +5,7 @@ function App() {
   const [message, setMessage] = useState(0)
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/message")
+    fetch("https://testappapi.rohithkaki.cloud/api/message")
     .then((res) => res.json())
     .then((data) => setMessage(data.message))
     .catch((err) => {
